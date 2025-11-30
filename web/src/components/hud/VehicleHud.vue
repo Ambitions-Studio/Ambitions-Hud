@@ -10,22 +10,6 @@ import HexagonIcon from '@/components/hud/HexagonIcon.vue'
 import HexagonIndicator from '@/components/hud/HexagonIndicator.vue'
 import { mdiGasStation, mdiSeatbelt, mdiEngine, mdiCarLightHigh } from '@/icons'
 
-interface VehicleConfig {
-  speedometer: boolean
-  fuel: boolean
-  seatbelt: boolean
-  engine: boolean
-  headlights: boolean
-  indicators: boolean
-  weather: boolean
-  compass: boolean
-  streetName: boolean
-}
-
-const props = defineProps<{
-  config: VehicleConfig
-}>()
-
 const { speed, fuel, seatbelt, engineDamage, headlights, indicator } = useVehicleStats()
 const store = useHudOptionsStore()
 
@@ -294,7 +278,7 @@ const isActive = (index: number) => {
 
 <template>
   <HexagonIndicator
-    v-if="props.config.indicators && (store.visibility.vehicle.indicators || isEditMode) && isIndicatorMoved && (indicator !== 'off' || isEditMode)"
+    v-if=" (store.visibility.vehicle.indicators || isEditMode) && isIndicatorMoved && (indicator !== 'off' || isEditMode)"
     :class="[
       'fixed',
       store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''
@@ -309,7 +293,7 @@ const isActive = (index: number) => {
   />
 
   <HexagonIcon
-    v-if="props.config.headlights && (store.visibility.vehicle.headlights || isEditMode) && isHeadlightsMoved && (headlights !== 'off' || isEditMode)"
+    v-if=" (store.visibility.vehicle.headlights || isEditMode) && isHeadlightsMoved && (headlights !== 'off' || isEditMode)"
     :class="[
       'fixed',
       store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''
@@ -325,7 +309,7 @@ const isActive = (index: number) => {
   />
 
   <div
-    v-if="props.config.seatbelt && (store.visibility.vehicle.seatbelt || isEditMode) && isSeatbeltMoved && (!seatbelt || isEditMode)"
+    v-if=" (store.visibility.vehicle.seatbelt || isEditMode) && isSeatbeltMoved && (!seatbelt || isEditMode)"
     :class="[
       'fixed',
       store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''
@@ -344,7 +328,7 @@ const isActive = (index: number) => {
   </div>
 
   <HexagonStatSmall
-    v-if="props.config.fuel && (store.visibility.vehicle.fuel || isEditMode) && isFuelMoved"
+    v-if=" (store.visibility.vehicle.fuel || isEditMode) && isFuelMoved"
     :class="[
       'fixed',
       store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''
@@ -364,7 +348,7 @@ const isActive = (index: number) => {
   />
 
   <div
-    v-if="props.config.engine && (store.visibility.vehicle.engine || isEditMode) && isEngineMoved"
+    v-if=" (store.visibility.vehicle.engine || isEditMode) && isEngineMoved"
     :class="[
       'fixed',
       store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''
@@ -383,7 +367,7 @@ const isActive = (index: number) => {
   </div>
 
   <div
-    v-if="props.config.speedometer && (store.visibility.vehicle.speedometer || isEditMode) && isSpeedometerMoved"
+    v-if="(store.visibility.vehicle.speedometer || isEditMode) && isSpeedometerMoved"
     :class="[
       'fixed flex items-end gap-1',
       store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''
@@ -404,7 +388,7 @@ const isActive = (index: number) => {
   </div>
 
   <span
-    v-if="props.config.speedometer && (store.visibility.vehicle.speedometer || isEditMode) && isUnitMoved"
+    v-if="(store.visibility.vehicle.speedometer || isEditMode) && isUnitMoved"
     :class="[
       'fixed text-white text-3xl font-bold uppercase',
       store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''
@@ -418,7 +402,7 @@ const isActive = (index: number) => {
   >MPH</span>
 
   <div class="flex items-end gap-3">
-      <div v-if="props.config.speedometer && (store.visibility.vehicle.speedometer || isEditMode)" class="flex items-end gap-1">
+      <div v-if="store.visibility.vehicle.speedometer || isEditMode" class="flex items-end gap-1">
         <div
           v-if="!isSpeedometerMoved"
           :class="[
@@ -453,7 +437,7 @@ const isActive = (index: number) => {
       <div class="flex flex-col items-center gap-1">
       <Transition :name="isEditMode ? '' : 'indicator'">
         <HexagonIndicator
-          v-if="props.config.indicators && (store.visibility.vehicle.indicators || isEditMode) && !isIndicatorMoved && (indicator !== 'off' || isEditMode)"
+          v-if=" (store.visibility.vehicle.indicators || isEditMode) && !isIndicatorMoved && (indicator !== 'off' || isEditMode)"
           :class="store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''"
           :style="{
             transform: `scale(${store.sizes.vehicle.indicators})`
@@ -465,7 +449,7 @@ const isActive = (index: number) => {
 
       <Transition :name="isEditMode ? '' : 'headlights'">
         <HexagonIcon
-          v-if="props.config.headlights && (store.visibility.vehicle.headlights || isEditMode) && !isHeadlightsMoved && (headlights !== 'off' || isEditMode)"
+          v-if=" (store.visibility.vehicle.headlights || isEditMode) && !isHeadlightsMoved && (headlights !== 'off' || isEditMode)"
           :class="store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''"
           :style="{
             transform: `scale(${store.sizes.vehicle.headlights})`
@@ -477,7 +461,7 @@ const isActive = (index: number) => {
       </Transition>
 
       <div
-        v-if="props.config.engine && (store.visibility.vehicle.engine || isEditMode) && !isEngineMoved"
+        v-if=" (store.visibility.vehicle.engine || isEditMode) && !isEngineMoved"
         :class="store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''"
         :style="{
           transform: `scale(${store.sizes.vehicle.engine})`
@@ -492,7 +476,7 @@ const isActive = (index: number) => {
 
       <Transition :name="isEditMode ? '' : 'seatbelt'">
         <div
-          v-if="props.config.seatbelt && (store.visibility.vehicle.seatbelt || isEditMode) && !isSeatbeltMoved && (!seatbelt || isEditMode)"
+          v-if=" (store.visibility.vehicle.seatbelt || isEditMode) && !isSeatbeltMoved && (!seatbelt || isEditMode)"
           :class="store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''"
           :style="{
             transform: `scale(${store.sizes.vehicle.seatbelt})`
@@ -507,7 +491,7 @@ const isActive = (index: number) => {
       </Transition>
 
       <HexagonStatSmall
-        v-if="props.config.fuel && (store.visibility.vehicle.fuel || isEditMode) && !isFuelMoved"
+        v-if=" (store.visibility.vehicle.fuel || isEditMode) && !isFuelMoved"
         :class="store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''"
         :style="{
           transform: `scale(${store.sizes.vehicle.fuel})`

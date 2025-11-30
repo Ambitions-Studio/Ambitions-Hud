@@ -6,21 +6,6 @@ import { usePlayerStats } from '@/composables/usePlayerStats'
 import { useHudOptionsStore } from '@/stores/hudOptions'
 import { mdiHeartPulse, mdiFoodDrumstick, mdiCupWater, mdiShieldHalfFull, mdiRun, mdiLungs, mdiMicrophone } from '@/icons'
 
-interface PlayerConfig {
-  health: boolean
-  armor: boolean
-  hunger: boolean
-  thirst: boolean
-  stamina: boolean
-  oxygen: boolean
-  voice: boolean
-  playerId: boolean
-}
-
-const props = defineProps<{
-  config: PlayerConfig
-}>()
-
 const { health, armor, hunger, thirst, stamina, oxygen, voice, isTalking, playerId } = usePlayerStats()
 const store = useHudOptionsStore()
 
@@ -386,7 +371,7 @@ const voiceGlow = computed(() => voice.value === 'megaphone')
 
 <template>
   <div
-    v-if="props.config.health && (store.visibility.player.health || isEditMode) && isHealthMoved"
+    v-if="(store.visibility.player.health || isEditMode) && isHealthMoved"
     :class="[
       'fixed',
       store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''
@@ -409,7 +394,7 @@ const voiceGlow = computed(() => voice.value === 'megaphone')
   </div>
 
   <div
-    v-if="props.config.armor && (store.visibility.player.armor || isEditMode) && (armor > 0 || isEditMode) && isArmorMoved"
+    v-if=" (store.visibility.player.armor || isEditMode) && (armor > 0 || isEditMode) && isArmorMoved"
     :class="[
       'fixed',
       store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''
@@ -432,7 +417,7 @@ const voiceGlow = computed(() => voice.value === 'megaphone')
   </div>
 
   <div
-    v-if="props.config.hunger && (store.visibility.player.hunger || isEditMode) && isHungerMoved"
+    v-if=" (store.visibility.player.hunger || isEditMode) && isHungerMoved"
     :class="[
       'fixed',
       store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''
@@ -455,7 +440,7 @@ const voiceGlow = computed(() => voice.value === 'megaphone')
   </div>
 
   <div
-    v-if="props.config.thirst && (store.visibility.player.thirst || isEditMode) && isThirstMoved"
+    v-if=" (store.visibility.player.thirst || isEditMode) && isThirstMoved"
     :class="[
       'fixed',
       store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''
@@ -478,7 +463,7 @@ const voiceGlow = computed(() => voice.value === 'megaphone')
   </div>
 
   <div
-    v-if="props.config.voice && (store.visibility.player.voice || isEditMode) && isVoiceMoved"
+    v-if=" (store.visibility.player.voice || isEditMode) && isVoiceMoved"
     :class="[
       'fixed',
       store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''
@@ -504,7 +489,7 @@ const voiceGlow = computed(() => voice.value === 'megaphone')
   </div>
 
   <div
-    v-if="props.config.stamina && (store.visibility.player.stamina || isEditMode) && (stamina < 100 || isEditMode) && isStaminaMoved"
+    v-if=" (store.visibility.player.stamina || isEditMode) && (stamina < 100 || isEditMode) && isStaminaMoved"
     :class="[
       'fixed',
       store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''
@@ -527,7 +512,7 @@ const voiceGlow = computed(() => voice.value === 'megaphone')
   </div>
 
   <div
-    v-if="props.config.oxygen && (store.visibility.player.oxygen || isEditMode) && (oxygen < 100 || isEditMode) && isOxygenMoved"
+    v-if=" (store.visibility.player.oxygen || isEditMode) && (oxygen < 100 || isEditMode) && isOxygenMoved"
     :class="[
       'fixed',
       store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''
@@ -550,7 +535,7 @@ const voiceGlow = computed(() => voice.value === 'megaphone')
   </div>
 
   <div
-    v-if="props.config.playerId && (store.visibility.player.playerId || isEditMode) && isPlayerIdMoved"
+    v-if=" (store.visibility.player.playerId || isEditMode) && isPlayerIdMoved"
     :class="[
       'fixed',
       store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''
@@ -567,7 +552,7 @@ const voiceGlow = computed(() => voice.value === 'megaphone')
 
   <div class="flex items-center gap-3">
     <div
-      v-if="props.config.health && (store.visibility.player.health || isEditMode) && !isHealthMoved"
+      v-if=" (store.visibility.player.health || isEditMode) && !isHealthMoved"
       :class="[
         'relative',
         store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''
@@ -589,7 +574,7 @@ const voiceGlow = computed(() => voice.value === 'megaphone')
 
     <Transition :name="isEditMode ? '' : 'armor'">
       <div
-        v-if="props.config.armor && (store.visibility.player.armor || isEditMode) && (armor > 0 || isEditMode) && !isArmorMoved"
+        v-if=" (store.visibility.player.armor || isEditMode) && (armor > 0 || isEditMode) && !isArmorMoved"
         :class="[
           'relative',
           store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''
@@ -611,7 +596,7 @@ const voiceGlow = computed(() => voice.value === 'megaphone')
     </Transition>
 
     <div
-      v-if="props.config.hunger && (store.visibility.player.hunger || isEditMode) && !isHungerMoved"
+      v-if=" (store.visibility.player.hunger || isEditMode) && !isHungerMoved"
       :class="[
         'relative',
         store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''
@@ -632,7 +617,7 @@ const voiceGlow = computed(() => voice.value === 'megaphone')
     </div>
 
     <div
-      v-if="props.config.thirst && (store.visibility.player.thirst || isEditMode) && !isThirstMoved"
+      v-if=" (store.visibility.player.thirst || isEditMode) && !isThirstMoved"
       :class="[
         'relative',
         store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''
@@ -654,7 +639,7 @@ const voiceGlow = computed(() => voice.value === 'megaphone')
 
     <Transition :name="isEditMode ? '' : 'stamina'">
       <div
-        v-if="props.config.stamina && (store.visibility.player.stamina || isEditMode) && (stamina < 100 || isEditMode) && !isStaminaMoved"
+        v-if=" (store.visibility.player.stamina || isEditMode) && (stamina < 100 || isEditMode) && !isStaminaMoved"
         :class="[
           'relative',
           store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''
@@ -677,7 +662,7 @@ const voiceGlow = computed(() => voice.value === 'megaphone')
 
     <Transition :name="isEditMode ? '' : 'oxygen'">
       <div
-        v-if="props.config.oxygen && (store.visibility.player.oxygen || isEditMode) && (oxygen < 100 || isEditMode) && !isOxygenMoved"
+        v-if=" (store.visibility.player.oxygen || isEditMode) && (oxygen < 100 || isEditMode) && !isOxygenMoved"
         :class="[
           'relative',
           store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''
@@ -699,7 +684,7 @@ const voiceGlow = computed(() => voice.value === 'megaphone')
     </Transition>
 
     <div
-      v-if="props.config.voice && (store.visibility.player.voice || isEditMode) && !isVoiceMoved"
+      v-if=" (store.visibility.player.voice || isEditMode) && !isVoiceMoved"
       :class="[
         'relative',
         store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''
@@ -723,7 +708,7 @@ const voiceGlow = computed(() => voice.value === 'megaphone')
     </div>
 
     <div
-      v-if="props.config.playerId && (store.visibility.player.playerId || isEditMode) && !isPlayerIdMoved"
+      v-if=" (store.visibility.player.playerId || isEditMode) && !isPlayerIdMoved"
       :class="[
         'relative',
         store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''

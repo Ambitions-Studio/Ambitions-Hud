@@ -12,16 +12,5 @@ local function HideHUD()
     })
 end
 
-local function SendHudConfig()
-    SendNUIMessage({
-        action = 'setHudConfig',
-        hudStats = hudConfig.hudStats
-    })
-end
-
-CreateThread(function()
-    SendHudConfig()
-end)
-
 exports('ShowHUD', ShowHUD)
 exports('HideHUD', HideHUD)
