@@ -1,7 +1,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const health = ref(100)
-const armor = ref(100)
+const armor = ref(0)
 const hunger = ref(100)
 const thirst = ref(100)
 const stamina = ref(100)
