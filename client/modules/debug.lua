@@ -1,4 +1,4 @@
-pif not hudConfig.debugMode then return end
+if not hudConfig.debugMode then return end
 
 RegisterCommand('debugHealthHud', function(_, args)
     local value = tonumber(args[1])
