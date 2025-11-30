@@ -24,14 +24,16 @@ import {
 
 const { t } = useI18n()
 
-withDefaults(defineProps<{
+const props = withDefaults(defineProps<{
   showSettingsFab?: boolean
+  forceVisible?: boolean
 }>(), {
-  showSettingsFab: false
+  showSettingsFab: false,
+  forceVisible: false
 })
 
 const settingsOpen = ref(false)
-const isHudVisible = ref(true)
+const isHudVisible = ref(props.forceVisible)
 
 const { weather } = useWeather()
 const { direction } = useCompass()

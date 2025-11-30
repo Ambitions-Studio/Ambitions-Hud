@@ -17,7 +17,7 @@ const currentView = ref('hud')
 
     <!-- <DevStatusBar /> -->
 
-    <HudView show-settings-fab />
+    <HudView show-settings-fab force-visible />
 
     <DevStatsFAB />
   </div>
