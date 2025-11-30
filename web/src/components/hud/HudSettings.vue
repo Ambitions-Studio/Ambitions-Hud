@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { sendNuiEvent } from '@/utils/nui'
 import {
   mdiCog,
   mdiPalette,
@@ -67,11 +68,13 @@ const openSizeModal = () => {
 const saveSettings = () => {
   store.clearBackups()
   isOpen.value = false
+  sendNuiEvent('closeSettings')
 }
 
 const cancelSettings = () => {
   store.restoreSettings()
   isOpen.value = false
+  sendNuiEvent('closeSettings')
 }
 </script>
 
