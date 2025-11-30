@@ -1,0 +1,132 @@
+{
+  "devStats": {
+    "title": "Contrôleur de Stats",
+    "talking": "Parle",
+    "street": "Rue",
+    "seatbelt": "Ceinture",
+    "voice": {
+      "whisper": "Chuchotement",
+      "normal": "Normal",
+      "shout": "Crier",
+      "megaphone": "Mégaphone"
+    },
+    "headlights": {
+      "off": "Éteints",
+      "on": "Allumés",
+      "highbeam": "Plein phare"
+    },
+    "indicators": {
+      "off": "Éteints",
+      "left": "Gauche",
+      "right": "Droite",
+      "hazard": "Warning"
+    },
+    "weather": {
+      "extrasunny": "Grand soleil",
+      "clear": "Dégagé",
+      "neutral": "Neutre",
+      "smog": "Smog",
+      "foggy": "Brumeux",
+      "overcast": "Couvert",
+      "clouds": "Nuageux",
+      "clearing": "Éclaircies",
+      "rain": "Pluie",
+      "thunder": "Orage",
+      "snow": "Neige",
+      "blizzard": "Blizzard",
+      "snowlight": "Neige légère",
+      "xmas": "Noël",
+      "halloween": "Halloween"
+    }
+  },
+  "settings": {
+    "title": "Paramètres HUD",
+    "tabs": {
+      "player": "Joueur",
+      "vehicle": "Véhicule",
+      "colors": "Couleurs",
+      "layout": "Disposition"
+    },
+    "player": {
+      "title": "Affichage",
+      "health": "Afficher la vie",
+      "armor": "Afficher l'armure",
+      "hunger": "Afficher la faim",
+      "thirst": "Afficher la soif",
+      "stamina": "Afficher la stamina",
+      "oxygen": "Afficher l'oxygène",
+      "voice": "Afficher la voix",
+      "playerId": "Afficher l'ID joueur"
+    },
+    "vehicle": {
+      "title": "Affichage",
+      "speedometer": "Afficher le compteur",
+      "fuel": "Afficher l'essence",
+      "seatbelt": "Afficher la ceinture",
+      "engine": "Afficher le moteur",
+      "headlights": "Afficher les phares",
+      "indicators": "Afficher les clignotants",
+      "weather": "Afficher la météo",
+      "compass": "Afficher la direction",
+      "streetName": "Afficher la rue"
+    },
+    "colors": {
+      "player": {
+        "title": "HUD Joueur",
+        "health": "Vie",
+        "armor": "Armure",
+        "hunger": "Faim",
+        "thirst": "Soif",
+        "stamina": "Stamina",
+        "oxygen": "Oxygène",
+        "voice": "Voix"
+      },
+      "vehicle": {
+        "title": "HUD Véhicule",
+        "speedometer": "Compteur",
+        "fuel": "Essence",
+        "weather": "Météo",
+        "streetName": "Rue"
+      }
+    },
+    "layout": {
+      "title": "Disposition",
+      "position": {
+        "button": "Changer la position"
+      },
+      "size": {
+        "button": "Changer la taille",
+        "title": "Taille des éléments",
+        "player": {
+          "title": "HUD Joueur",
+          "health": "Vie",
+          "armor": "Armure",
+          "hunger": "Faim",
+          "thirst": "Soif",
+          "stamina": "Stamina",
+          "oxygen": "Oxygène",
+          "voice": "Voix",
+          "playerId": "ID Joueur"
+        },
+        "vehicle": {
+          "title": "HUD Véhicule",
+          "speedometer": "Compteur",
+          "unit": "Unité (MPH)",
+          "fuel": "Essence",
+          "seatbelt": "Ceinture",
+          "headlights": "Phares",
+          "indicators": "Clignotants",
+          "engine": "Moteur",
+          "weather": "Météo",
+          "compass": "Direction",
+          "streetName": "Nom de rue"
+        }
+      }
+    },
+    "buttons": {
+      "cancel": "Annuler",
+      "save": "Sauvegarder",
+      "validate": "Valider"
+    }
+  }
+}
