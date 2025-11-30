@@ -93,10 +93,6 @@ const cancelSettings = () => {
       v-if="isOpen && !store.isSettingsHidden"
       class="fixed inset-0 z-[100] flex items-center justify-center"
     >
-      <div
-        class="absolute inset-0"
-        :class="showFab ? '' : 'bg-black/50 backdrop-blur-sm'"
-      ></div>
 
       <div class="relative w-[700px] max-h-[80vh] overflow-hidden">
         <div class="absolute inset-0 bg-slate-900/95 backdrop-blur-xl rounded-2xl border border-blue-500/20 shadow-2xl shadow-blue-500/10"></div>
