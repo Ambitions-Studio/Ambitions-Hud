@@ -14,6 +14,9 @@ const handleMessage = (event: MessageEvent) => {
   if (event.data.action === 'updateHealth') {
     health.value = event.data.value
   }
+  if (event.data.action === 'updateArmor') {
+    armor.value = event.data.value
+  }
 }
 
 let isListenerRegistered = false

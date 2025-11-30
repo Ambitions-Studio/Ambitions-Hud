@@ -35,6 +35,30 @@ const props = withDefaults(defineProps<{
 const settingsOpen = ref(false)
 const isHudVisible = ref(props.forceVisible)
 
+const hudConfig = ref({
+  player: {
+    health: true,
+    armor: true,
+    hunger: true,
+    thirst: true,
+    stamina: true,
+    oxygen: true,
+    voice: true,
+    playerId: true
+  },
+  vehicle: {
+    speedometer: true,
+    fuel: true,
+    seatbelt: true,
+    engine: true,
+    headlights: true,
+    indicators: true,
+    weather: true,
+    compass: true,
+    streetName: true
+  }
+})
+
 const { weather } = useWeather()
 const { direction } = useCompass()
 const { streetName } = useLocation()
@@ -49,6 +73,14 @@ const handleMessage = (event: MessageEvent) => {
   }
   if (event.data.action === 'showHud') {
     isHudVisible.value = event.data.show
+  }
+  if (event.data.action === 'setHudConfig') {
+    if (event.data.hudStats?.player) {
+      Object.assign(hudConfig.value.player, event.data.hudStats.player)
+    }
+    if (event.data.hudStats?.vehicle) {
+      Object.assign(hudConfig.value.vehicle, event.data.hudStats.vehicle)
+    }
   }
 }
 
@@ -182,7 +214,7 @@ const isStreetNameMoved = computed(() => store.positions.vehicle.streetName.x !=
 <template>
   <div v-show="isHudVisible">
   <span
-    v-if="(store.visibility.vehicle.streetName || isEditMode) && isStreetNameMoved"
+    v-if="hudConfig.vehicle.streetName && (store.visibility.vehicle.streetName || isEditMode) && isStreetNameMoved"
     :class="[
       'fixed street-name',
       store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''
@@ -197,7 +229,7 @@ const isStreetNameMoved = computed(() => store.positions.vehicle.streetName.x !=
   >{{ streetName }}</span>
 
   <div
-    v-if="(store.visibility.vehicle.compass || isEditMode) && isCompassMoved"
+    v-if="hudConfig.vehicle.compass && (store.visibility.vehicle.compass || isEditMode) && isCompassMoved"
     :class="[
       'fixed w-12 h-12 flex items-center justify-center drop-shadow-lg',
       store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''
@@ -223,7 +255,7 @@ const isStreetNameMoved = computed(() => store.positions.vehicle.streetName.x !=
   </div>
 
   <VIcon
-    v-if="(store.visibility.vehicle.weather || isEditMode) && isWeatherMoved"
+    v-if="hudConfig.vehicle.weather && (store.visibility.vehicle.weather || isEditMode) && isWeatherMoved"
     :class="[
       'fixed drop-shadow-lg',
       store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''
@@ -242,7 +274,7 @@ const isStreetNameMoved = computed(() => store.positions.vehicle.streetName.x !=
   <div class="fixed inset-0 w-full h-full pointer-events-none z-[100]">
     <div class="absolute top-8 left-1/2 -translate-x-1/2 flex items-center gap-3">
       <VIcon
-        v-if="(store.visibility.vehicle.weather || isEditMode) && !isWeatherMoved"
+        v-if="hudConfig.vehicle.weather && (store.visibility.vehicle.weather || isEditMode) && !isWeatherMoved"
         :class="store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''"
         :style="{
           transform: `scale(${store.sizes.vehicle.weather})`
@@ -255,7 +287,7 @@ const isStreetNameMoved = computed(() => store.positions.vehicle.streetName.x !=
       />
 
       <div
-        v-if="(store.visibility.vehicle.compass || isEditMode) && !isCompassMoved"
+        v-if="hudConfig.vehicle.compass && (store.visibility.vehicle.compass || isEditMode) && !isCompassMoved"
         :class="[
           'w-12 h-12 flex items-center justify-center drop-shadow-lg',
           store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''
@@ -279,7 +311,7 @@ const isStreetNameMoved = computed(() => store.positions.vehicle.streetName.x !=
       </div>
 
       <span
-        v-if="(store.visibility.vehicle.streetName || isEditMode) && !isStreetNameMoved"
+        v-if="hudConfig.vehicle.streetName && (store.visibility.vehicle.streetName || isEditMode) && !isStreetNameMoved"
         :class="[
           'street-name',
           store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''
@@ -293,8 +325,8 @@ const isStreetNameMoved = computed(() => store.positions.vehicle.streetName.x !=
     </div>
 
     <div class="absolute bottom-8 right-8 flex flex-col items-end gap-4">
-      <VehicleHud />
-      <PlayerHud />
+      <VehicleHud :config="hudConfig.vehicle" />
+      <PlayerHud :config="hudConfig.player" />
     </div>
   </div>
 

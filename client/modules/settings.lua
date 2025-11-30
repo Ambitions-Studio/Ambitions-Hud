@@ -26,6 +26,8 @@ RegisterNUICallback('closeSettings', function(_, cb)
     cb('ok')
 end)
 
-RegisterCommand('hud', function()
-    OpenSettings()
-end, false)
+if hudConfig.playerCanCustom then
+    RegisterCommand('hud', function()
+        OpenSettings()
+    end, false)
+end

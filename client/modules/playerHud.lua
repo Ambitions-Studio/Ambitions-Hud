@@ -1,9 +1,11 @@
 local lastHealth = -1
+local lastArmor = -1
 
 CreateThread(function()
     while true do
         local playerPed = PlayerPedId()
         local currentHealth = math.floor((GetEntityHealth(playerPed) - 100) / 100 * 100)
+        local currentArmor = GetPedArmour(playerPed)
 
         if currentHealth < 0 then
             currentHealth = 0
@@ -14,6 +16,14 @@ CreateThread(function()
             SendNUIMessage({
                 action = 'updateHealth',
                 value = currentHealth
+            })
+        end
+
+        if currentArmor ~= lastArmor then
+            lastArmor = currentArmor
+            SendNUIMessage({
+                action = 'updateArmor',
+                value = currentArmor
             })
         end
 

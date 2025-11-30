@@ -15,7 +15,8 @@ name 'Ambitions HUD'
 lua54 'yes'
 
 shared_scripts {
-  '@Ambitions/init.lua',
+    '@Ambitions/init.lua',
+    'config/*.lua',
 }
 
 server_scripts {
