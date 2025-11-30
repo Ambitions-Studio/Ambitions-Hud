@@ -6,7 +6,7 @@ use_experimental_fxv2_oal 'yes'
 
 author 'Ambitions Studio'
 
-description 'Ambitions HUD — A complete character management system with identity creation, appearance setup, and full integration into the Ambitions framework.'
+description 'Ambitions HUD — pA clean, modular, and fully customizable HUD system designed specifically for the Ambitions Framework on FiveM.'
 
 version '0.3.0'
 
@@ -23,6 +23,7 @@ server_scripts {
 }
 
 client_scripts {
+    'client/modules/*.lua',
 }
 
 ui_page 'web/dist/index.html'

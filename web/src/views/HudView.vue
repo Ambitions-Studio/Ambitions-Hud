@@ -31,6 +31,7 @@ withDefaults(defineProps<{
 })
 
 const settingsOpen = ref(false)
+const isHudVisible = ref(true)
 
 const { weather } = useWeather()
 const { direction } = useCompass()
@@ -43,6 +44,9 @@ const handleMessage = (event: MessageEvent) => {
   }
   if (event.data.action === 'closeSettings') {
     settingsOpen.value = false
+  }
+  if (event.data.action === 'showHud') {
+    isHudVisible.value = event.data.show
   }
 }
 
@@ -174,6 +178,7 @@ const isStreetNameMoved = computed(() => store.positions.vehicle.streetName.x !=
 </script>
 
 <template>
+  <div v-show="isHudVisible">
   <span
     v-if="(store.visibility.vehicle.streetName || isEditMode) && isStreetNameMoved"
     :class="[
@@ -292,6 +297,7 @@ const isStreetNameMoved = computed(() => store.positions.vehicle.streetName.x !=
   </div>
 
   <HudSettings v-model="settingsOpen" :show-fab="showSettingsFab" />
+  </div>
 
   <div
     v-if="store.isPositionEditMode"
