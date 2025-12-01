@@ -47,12 +47,5 @@ end)
 
 RegisterNetEvent('ambitions:client:damagePlayer', function(amount)
     local playerPed = PlayerPedId()
-    local currentHealth = GetEntityHealth(playerPed)
-    local newHealth = currentHealth - amount
-
-    if newHealth <= 0 then
-        SetEntityHealth(playerPed, 0)
-    else
-        SetEntityHealth(playerPed, newHealth)
-    end
+    ApplyDamageToPed(playerPed, amount, false)
 end)
