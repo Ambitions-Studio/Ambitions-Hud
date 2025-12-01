@@ -184,7 +184,7 @@ const isStreetNameMoved = computed(() => store.positions.vehicle.streetName.x !=
 <template>
   <div v-show="isHudVisible">
   <span
-    v-if="(store.visibility.vehicle.streetName || isEditMode) && isStreetNameMoved"
+    v-if="isInVehicle && (store.visibility.vehicle.streetName || isEditMode) && isStreetNameMoved"
     :class="[
       'fixed street-name',
       store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''
@@ -199,7 +199,7 @@ const isStreetNameMoved = computed(() => store.positions.vehicle.streetName.x !=
   >{{ streetName }}</span>
 
   <div
-    v-if="(store.visibility.vehicle.compass || isEditMode) && isCompassMoved"
+    v-if="isInVehicle && (store.visibility.vehicle.compass || isEditMode) && isCompassMoved"
     :class="[
       'fixed w-12 h-12 flex items-center justify-center drop-shadow-lg',
       store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''
@@ -225,7 +225,7 @@ const isStreetNameMoved = computed(() => store.positions.vehicle.streetName.x !=
   </div>
 
   <VIcon
-    v-if="(store.visibility.vehicle.weather || isEditMode) && isWeatherMoved"
+    v-if="isInVehicle && (store.visibility.vehicle.weather || isEditMode) && isWeatherMoved"
     :class="[
       'fixed drop-shadow-lg',
       store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''
@@ -244,7 +244,7 @@ const isStreetNameMoved = computed(() => store.positions.vehicle.streetName.x !=
   <div class="fixed inset-0 w-full h-full pointer-events-none z-[100]">
     <div class="absolute top-8 left-1/2 -translate-x-1/2 flex items-center gap-3">
       <VIcon
-        v-if="(store.visibility.vehicle.weather || isEditMode) && !isWeatherMoved"
+        v-if="isInVehicle && (store.visibility.vehicle.weather || isEditMode) && !isWeatherMoved"
         :class="store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''"
         :style="{
           transform: `scale(${store.sizes.vehicle.weather})`
@@ -257,7 +257,7 @@ const isStreetNameMoved = computed(() => store.positions.vehicle.streetName.x !=
       />
 
       <div
-        v-if="(store.visibility.vehicle.compass || isEditMode) && !isCompassMoved"
+        v-if="isInVehicle && (store.visibility.vehicle.compass || isEditMode) && !isCompassMoved"
         :class="[
           'w-12 h-12 flex items-center justify-center drop-shadow-lg',
           store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''
@@ -281,7 +281,7 @@ const isStreetNameMoved = computed(() => store.positions.vehicle.streetName.x !=
       </div>
 
       <span
-        v-if="(store.visibility.vehicle.streetName || isEditMode) && !isStreetNameMoved"
+        v-if="isInVehicle && (store.visibility.vehicle.streetName || isEditMode) && !isStreetNameMoved"
         :class="[
           'street-name',
           store.isPositionEditMode ? 'cursor-move pointer-events-auto' : ''
