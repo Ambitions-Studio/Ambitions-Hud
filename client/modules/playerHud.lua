@@ -47,7 +47,10 @@ end)
 
 RegisterNetEvent('ambitions:client:damagePlayer', function(amount)
     local playerPed = PlayerPedId()
-    ApplyDamageToPed(playerPed, amount, false)
-    SetPedLastDamageBone(playerPed, 0)
-    StartScreenEffect("DeathFailOut", 500, false)
+    local currentHealth = GetEntityHealth(playerPed)
+    local newHealth = currentHealth - amount
+    if newHealth < 0 then
+        newHealth = 0
+    end
+    SetEntityHealth(playerPed, newHealth)
 end)
