@@ -22,6 +22,10 @@ CreateThread(function()
 end)
 
 CreateThread(function()
+    while GetPlayerServerId(PlayerId()) == 0 do
+        Wait(100)
+    end
+
     SendNUIMessage({
         action = 'updatePlayerId',
         value = GetPlayerServerId(PlayerId())
