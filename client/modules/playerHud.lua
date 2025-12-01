@@ -3,6 +3,14 @@ local lastArmor = -1
 
 CreateThread(function()
     while true do
+        HideHudComponentThisFrame(3)
+        HideHudComponentThisFrame(4)
+        Wait(0)
+    end
+end)
+
+CreateThread(function()
+    while true do
         local playerPed = PlayerPedId()
         local currentHealth = math.floor((GetEntityHealth(playerPed) - 100) / 100 * 100)
         local currentArmor = GetPedArmour(playerPed)
