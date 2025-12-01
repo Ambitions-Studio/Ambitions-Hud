@@ -1,6 +1,7 @@
 local lastHealth = -1
 local lastArmor = -1
 local lastStamina = -1
+local lastOxygen = -1
 
 CreateThread(function()
     local shape = hudConfig.minimapShape or 'square'
@@ -52,6 +53,25 @@ CreateThread(function()
             SendNUIMessage({
                 action = 'updateStamina',
                 value = currentStamina
+            })
+        end
+
+        local currentOxygen = 100
+        if IsEntityInWater(playerPed) then
+            currentOxygen = math.floor(GetPlayerUnderwaterTimeRemaining(PlayerId()) * 10)
+            if currentOxygen > 100 then
+                currentOxygen = 100
+            end
+            if currentOxygen < 0 then
+                currentOxygen = 0
+            end
+        end
+
+        if currentOxygen ~= lastOxygen then
+            lastOxygen = currentOxygen
+            SendNUIMessage({
+                action = 'updateOxygen',
+                value = currentOxygen
             })
         end
 
