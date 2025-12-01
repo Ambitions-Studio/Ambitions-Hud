@@ -7,10 +7,17 @@ const engineDamage = ref(0)
 const headlights = ref<'off' | 'on' | 'highbeam'>('off')
 const indicator = ref<'off' | 'left' | 'right' | 'hazard'>('off')
 const isInVehicle = ref(false)
+const speedUnit = ref<'kmh' | 'mph'>('kmh')
 
 const handleMessage = (event: MessageEvent) => {
   if (event.data.action === 'updateInVehicle') {
     isInVehicle.value = event.data.value
+  }
+  if (event.data.action === 'updateSpeed') {
+    speed.value = event.data.value
+  }
+  if (event.data.action === 'updateSpeedUnit') {
+    speedUnit.value = event.data.value
   }
 }
 
@@ -25,5 +32,6 @@ export function useVehicleStats() {
     headlights,
     indicator,
     isInVehicle,
+    speedUnit,
   }
 }

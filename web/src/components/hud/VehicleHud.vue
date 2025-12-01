@@ -10,7 +10,7 @@ import HexagonIcon from '@/components/hud/HexagonIcon.vue'
 import HexagonIndicator from '@/components/hud/HexagonIndicator.vue'
 import { mdiGasStation, mdiSeatbelt, mdiEngine, mdiCarLightHigh } from '@/icons'
 
-const { speed, fuel, seatbelt, engineDamage, headlights, indicator } = useVehicleStats()
+const { speed, fuel, seatbelt, engineDamage, headlights, indicator, speedUnit } = useVehicleStats()
 const store = useHudOptionsStore()
 
 const isEditMode = computed(() => store.isPositionEditMode || store.isSizeEditMode)
@@ -399,7 +399,7 @@ const isActive = (index: number) => {
       transform: `scale(${store.sizes.vehicle.speedometerUnit})`
     }"
     @mousedown="startDragUnit"
-  >MPH</span>
+  >{{ speedUnit.toUpperCase() }}</span>
 
   <div class="flex items-end gap-3">
       <div v-if="store.visibility.vehicle.speedometer || isEditMode" class="flex items-end gap-1">
@@ -431,7 +431,7 @@ const isActive = (index: number) => {
             transform: `scale(${store.sizes.vehicle.speedometerUnit})`
           }"
           @mousedown="startDragUnit"
-        >MPH</span>
+        >{{ speedUnit.toUpperCase() }}</span>
       </div>
 
       <div class="flex flex-col items-center gap-1">
