@@ -30,3 +30,17 @@ CreateThread(function()
         Wait(250)
     end
 end)
+
+RegisterNetEvent('ambitions:client:updateNeed', function(needType, value)
+    if needType == 'hunger' then
+        SendNUIMessage({
+            action = 'updateHunger',
+            value = value
+        })
+    elseif needType == 'thirst' then
+        SendNUIMessage({
+            action = 'updateThirst',
+            value = value
+        })
+    end
+end)
