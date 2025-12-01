@@ -7,6 +7,7 @@ import HudSettings from '@/components/hud/HudSettings.vue'
 import { useWeather, type WeatherType } from '@/composables/useWeather'
 import { useCompass } from '@/composables/useCompass'
 import { useLocation } from '@/composables/useLocation'
+import { useVehicleStats } from '@/composables/useVehicleStats'
 import { useHudOptionsStore } from '@/stores/hudOptions'
 import {
   mdiWeatherSunny,
@@ -38,6 +39,7 @@ const isHudVisible = ref(props.forceVisible)
 const { weather } = useWeather()
 const { direction } = useCompass()
 const { streetName } = useLocation()
+const { isInVehicle } = useVehicleStats()
 const store = useHudOptionsStore()
 
 const handleMessage = (event: MessageEvent) => {
@@ -293,7 +295,7 @@ const isStreetNameMoved = computed(() => store.positions.vehicle.streetName.x !=
     </div>
 
     <div class="absolute bottom-8 right-8 flex flex-col items-end gap-4">
-      <VehicleHud />
+      <VehicleHud v-if="isInVehicle" />
       <PlayerHud />
     </div>
   </div>

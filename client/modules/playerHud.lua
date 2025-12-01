@@ -4,24 +4,6 @@ local lastStamina = -1
 local lastOxygen = -1
 
 CreateThread(function()
-    local shape = hudConfig.minimapShape or 'square'
-    local textureName = shape == 'circle' and 'circlemap' or 'squaremap'
-    local clipType = shape == 'circle' and 1 or 0
-
-    while not HasStreamedTextureDictLoaded(textureName) do
-        RequestStreamedTextureDict(textureName, false)
-        Wait(100)
-    end
-
-    AddReplaceTexture('platform:/textures/graphics', 'radarmasksm', textureName, 'radarmasksm')
-    AddReplaceTexture('platform:/textures/graphics', 'radarmask1g', textureName, 'radarmasksm')
-    SetMinimapClipType(clipType)
-    SetBigmapActive(true, false)
-    Wait(0)
-    SetBigmapActive(false, false)
-end)
-
-CreateThread(function()
     while true do
         local playerPed = PlayerPedId()
 

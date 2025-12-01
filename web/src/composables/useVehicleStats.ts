@@ -6,6 +6,15 @@ const seatbelt = ref(false)
 const engineDamage = ref(0)
 const headlights = ref<'off' | 'on' | 'highbeam'>('off')
 const indicator = ref<'off' | 'left' | 'right' | 'hazard'>('off')
+const isInVehicle = ref(false)
+
+const handleMessage = (event: MessageEvent) => {
+  if (event.data.action === 'updateInVehicle') {
+    isInVehicle.value = event.data.value
+  }
+}
+
+window.addEventListener('message', handleMessage)
 
 export function useVehicleStats() {
   return {
@@ -15,5 +24,6 @@ export function useVehicleStats() {
     engineDamage,
     headlights,
     indicator,
+    isInVehicle,
   }
 }
