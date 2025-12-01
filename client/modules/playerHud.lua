@@ -25,7 +25,7 @@ CreateThread(function()
         local playerPed = PlayerPedId()
         local currentHealth = math.floor((GetEntityHealth(playerPed) - 100) / 100 * 100)
         local currentArmor = GetPedArmour(playerPed)
-        local currentStamina = math.floor(GetPlayerSprintStaminaRemaining(PlayerId()))
+        local currentStamina = 100 - math.floor(GetPlayerSprintStaminaRemaining(PlayerId()))
 
         if currentHealth < 0 then
             currentHealth = 0
