@@ -2,6 +2,7 @@ local lastHealth = -1
 local lastArmor = -1
 local lastStamina = -1
 local lastOxygen = -1
+local playerIdSent = false
 
 CreateThread(function()
     local shape = hudConfig.minimapShape or 'square'
@@ -22,17 +23,19 @@ CreateThread(function()
 end)
 
 CreateThread(function()
-    while GetPlayerServerId(PlayerId()) == 0 do
-        Wait(100)
-    end
-
-    SendNUIMessage({
-        action = 'updatePlayerId',
-        value = GetPlayerServerId(PlayerId())
-    })
-
     while true do
         local playerPed = PlayerPedId()
+
+        if not playerIdSent then
+            local serverId = GetPlayerServerId(PlayerId())
+            if serverId > 0 then
+                SendNUIMessage({
+                    action = 'updatePlayerId',
+                    value = serverId
+                })
+                playerIdSent = true
+            end
+        end
         local currentHealth = math.floor((GetEntityHealth(playerPed) - 100) / 100 * 100)
         local currentArmor = GetPedArmour(playerPed)
         local currentStamina = 100 - math.floor(GetPlayerSprintStaminaRemaining(PlayerId()))
