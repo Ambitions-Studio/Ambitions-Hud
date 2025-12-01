@@ -23,6 +23,9 @@ const handleMessage = (event: MessageEvent) => {
   if (event.data.action === 'updateThirst') {
     thirst.value = event.data.value
   }
+  if (event.data.action === 'updateStamina') {
+    stamina.value = event.data.value
+  }
 }
 
 let isListenerRegistered = false

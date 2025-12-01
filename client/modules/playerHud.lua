@@ -1,12 +1,23 @@
 local lastHealth = -1
 local lastArmor = -1
+local lastStamina = -1
 
 CreateThread(function()
-    while true do
-        HideHudComponentThisFrame(3)
-        HideHudComponentThisFrame(4)
-        Wait(0)
+    local shape = hudConfig.minimapShape or 'square'
+    local textureName = shape == 'circle' and 'circlemap' or 'squaremap'
+    local clipType = shape == 'circle' and 1 or 0
+
+    while not HasStreamedTextureDictLoaded(textureName) do
+        RequestStreamedTextureDict(textureName, false)
+        Wait(100)
     end
+
+    AddReplaceTexture('platform:/textures/graphics', 'radarmasksm', textureName, 'radarmasksm')
+    AddReplaceTexture('platform:/textures/graphics', 'radarmask1g', textureName, 'radarmasksm')
+    SetMinimapClipType(clipType)
+    SetBigmapActive(true, false)
+    Wait(0)
+    SetBigmapActive(false, false)
 end)
 
 CreateThread(function()
@@ -14,6 +25,7 @@ CreateThread(function()
         local playerPed = PlayerPedId()
         local currentHealth = math.floor((GetEntityHealth(playerPed) - 100) / 100 * 100)
         local currentArmor = GetPedArmour(playerPed)
+        local currentStamina = math.floor(GetPlayerSprintStaminaRemaining(PlayerId()))
 
         if currentHealth < 0 then
             currentHealth = 0
@@ -35,7 +47,15 @@ CreateThread(function()
             })
         end
 
-        Wait(250)
+        if currentStamina ~= lastStamina then
+            lastStamina = currentStamina
+            SendNUIMessage({
+                action = 'updateStamina',
+                value = currentStamina
+            })
+        end
+
+        Wait(100)
     end
 end)
 

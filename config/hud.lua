@@ -1,4 +1,5 @@
 hudConfig = {
     debugMode = false,
-    playerCanCustom = true
+    playerCanCustom = true,
+    minimapShape = 'square'
 }
