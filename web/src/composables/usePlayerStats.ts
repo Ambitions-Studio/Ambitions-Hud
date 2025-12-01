@@ -29,6 +29,9 @@ const handleMessage = (event: MessageEvent) => {
   if (event.data.action === 'updateOxygen') {
     oxygen.value = event.data.value
   }
+  if (event.data.action === 'updatePlayerId') {
+    playerId.value = event.data.value
+  }
 }
 
 let isListenerRegistered = false
@@ -58,3 +61,4 @@ export function usePlayerStats() {
     playerId,
   }
 }
+n

@@ -22,6 +22,11 @@ CreateThread(function()
 end)
 
 CreateThread(function()
+    SendNUIMessage({
+        action = 'updatePlayerId',
+        value = GetPlayerServerId(PlayerId())
+    })
+
     while true do
         local playerPed = PlayerPedId()
         local currentHealth = math.floor((GetEntityHealth(playerPed) - 100) / 100 * 100)
