@@ -1,5 +1,6 @@
 hudConfig = {
     debugMode = false,
     playerCanCustom = true,
-    speedUnit = 'kmh'
+    speedUnit = 'kmh',
+    seatbeltKey = 'B'
 }

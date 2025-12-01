@@ -19,6 +19,9 @@ const handleMessage = (event: MessageEvent) => {
   if (event.data.action === 'updateSpeedUnit') {
     speedUnit.value = event.data.value
   }
+  if (event.data.action === 'updateSeatbelt') {
+    seatbelt.value = event.data.value
+  }
 }
 
 window.addEventListener('message', handleMessage)

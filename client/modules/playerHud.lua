@@ -1,4 +1,4 @@
-local lastHealth = -1
+oklocal lastHealth = -1
 local lastArmor = -1
 local lastStamina = -1
 local lastOxygen = -1
