@@ -2,7 +2,6 @@ local lastHealth = -1
 local lastArmor = -1
 local lastStamina = -1
 local lastOxygen = -1
-local lastPlayerId = -1
 
 CreateThread(function()
     local shape = hudConfig.minimapShape or 'square'
@@ -74,15 +73,6 @@ CreateThread(function()
             SendNUIMessage({
                 action = 'updateOxygen',
                 value = currentOxygen
-            })
-        end
-
-        local currentPlayerId = GetPlayerServerId(PlayerId())
-        if currentPlayerId ~= lastPlayerId then
-            lastPlayerId = currentPlayerId
-            SendNUIMessage({
-                action = 'updatePlayerId',
-                value = currentPlayerId
             })
         end
 

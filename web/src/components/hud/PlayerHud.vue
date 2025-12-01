@@ -534,7 +534,7 @@ const voiceGlow = computed(() => voice.value === 'megaphone')
     />
   </div>
 
-  <div
+  <!-- <div
     v-if=" (store.visibility.player.playerId || isEditMode) && isPlayerIdMoved"
     :class="[
       'fixed',
@@ -548,7 +548,7 @@ const voiceGlow = computed(() => voice.value === 'megaphone')
     @mousedown="startDragPlayerId"
   >
     <HexagonId :id="playerId" />
-  </div>
+  </div> -->
 
   <div class="flex items-center gap-3">
     <div
@@ -707,7 +707,7 @@ const voiceGlow = computed(() => voice.value === 'megaphone')
       />
     </div>
 
-    <div
+    <!-- <div
       v-if=" (store.visibility.player.playerId || isEditMode) && !isPlayerIdMoved"
       :class="[
         'relative',
@@ -719,7 +719,7 @@ const voiceGlow = computed(() => voice.value === 'megaphone')
       @mousedown="startDragPlayerId"
     >
       <HexagonId :id="playerId" />
-    </div>
+    </div> -->
   </div>
 </template>
 
