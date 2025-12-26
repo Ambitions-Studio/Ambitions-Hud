@@ -62,7 +62,7 @@ CreateThread(function()
     end
 end)
 
-RegisterNetEvent('ambitions:client:updateNeed', function(needType, value)
+RegisterNetEvent('ambitions-hud:client:updateNeed', function(needType, value)
     if needType == 'hunger' then
         SendNUIMessage({
             action = 'updateHunger',
@@ -76,7 +76,7 @@ RegisterNetEvent('ambitions:client:updateNeed', function(needType, value)
     end
 end)
 
-RegisterNetEvent('ambitions:client:damagePlayer', function(amount)
+RegisterNetEvent('ambitions-hud:client:damagePlayer', function(amount)
     local playerPed = PlayerPedId()
     local currentHealth = GetEntityHealth(playerPed)
     local newHealth = currentHealth - amount
