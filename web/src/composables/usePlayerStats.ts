@@ -6,7 +6,8 @@ const hunger = ref(100)
 const thirst = ref(100)
 const stamina = ref(100)
 const oxygen = ref(100)
-const voice = ref<'whisper' | 'normal' | 'shout' | 'megaphone'>('normal')
+const voiceMode = ref('Normal')
+const voiceRange = ref(7.0)
 const isTalking = ref(false)
 const playerId = ref(1)
 
@@ -32,6 +33,13 @@ const handleMessage = (event: MessageEvent) => {
   if (event.data.action === 'updatePlayerId') {
     playerId.value = event.data.value
   }
+  if (event.data.action === 'updateVoiceMode') {
+    voiceMode.value = event.data.mode
+    voiceRange.value = event.data.range
+  }
+  if (event.data.action === 'updateTalking') {
+    isTalking.value = event.data.value
+  }
 }
 
 let isListenerRegistered = false
@@ -56,7 +64,8 @@ export function usePlayerStats() {
     thirst,
     stamina,
     oxygen,
-    voice,
+    voiceMode,
+    voiceRange,
     isTalking,
     playerId,
   }

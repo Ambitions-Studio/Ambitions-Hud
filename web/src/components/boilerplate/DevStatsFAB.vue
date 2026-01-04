@@ -31,7 +31,7 @@ import {
   mdiRoadVariant,
 } from '@/icons'
 
-const { health, armor, hunger, thirst, stamina, oxygen, voice, isTalking } = usePlayerStats()
+const { health, armor, hunger, thirst, stamina, oxygen, voiceMode, isTalking } = usePlayerStats()
 const { speed, fuel, seatbelt, engineDamage, headlights, indicator } = useVehicleStats()
 const { weather } = useWeather()
 const { direction } = useCompass()
@@ -53,12 +53,12 @@ const updateIndicator = (index: number) => {
   indicator.value = indicatorModes[index] ?? 'off'
 }
 
-const voiceModes: ('whisper' | 'normal' | 'shout' | 'megaphone')[] = ['whisper', 'normal', 'shout', 'megaphone']
-const voiceIndex = ref(voiceModes.indexOf(voice.value))
+const voiceModes: string[] = ['Whisper', 'Normal', 'Shouting', 'Megaphone']
+const voiceIndex = ref(voiceModes.findIndex(m => m.toLowerCase().includes(voiceMode.value.toLowerCase())))
 
 const updateVoice = (index: number) => {
   voiceIndex.value = index
-  voice.value = voiceModes[index] ?? 'normal'
+  voiceMode.value = voiceModes[index] ?? 'Normal'
 }
 
 const weatherModes: WeatherType[] = [
@@ -209,7 +209,7 @@ const isOpen = ref(false)
             <div class="flex flex-col items-center gap-2">
               <div class="flex items-center gap-2">
                 <VIcon :icon="mdiMicrophone" color="#e5e5e5" size="24" />
-                <span class="text-white text-sm">{{ t(`devStats.voice.${voice}`) }}</span>
+                <span class="text-white text-sm">{{ voiceMode }}</span>
               </div>
               <VSlider
                 :model-value="voiceIndex"

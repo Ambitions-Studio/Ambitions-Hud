@@ -6,7 +6,7 @@ import { usePlayerStats } from '@/composables/usePlayerStats'
 import { useHudOptionsStore } from '@/stores/hudOptions'
 import { mdiHeartPulse, mdiFoodDrumstick, mdiCupWater, mdiShieldHalfFull, mdiRun, mdiLungs, mdiMicrophone } from '@/icons'
 
-const { health, armor, hunger, thirst, stamina, oxygen, voice, isTalking, playerId } = usePlayerStats()
+const { health, armor, hunger, thirst, stamina, oxygen, voiceMode, isTalking, playerId } = usePlayerStats()
 const store = useHudOptionsStore()
 
 const isEditMode = computed(() => store.isPositionEditMode || store.isSizeEditMode)
@@ -347,26 +347,24 @@ const voiceGradientTo = computed(() => {
 })
 
 const voiceValue = computed(() => {
-  switch (voice.value) {
-    case 'whisper': return 25
-    case 'normal': return 50
-    case 'shout': return 100
-    case 'megaphone': return 100
-    default: return 50
-  }
+  const mode = voiceMode.value.toLowerCase()
+  if (mode.includes('whisper')) return 25
+  if (mode.includes('normal')) return 50
+  if (mode.includes('shout')) return 100
+  if (mode.includes('megaphone')) return 100
+  return 50
 })
 
 const voiceIconOpacity = computed(() => {
-  switch (voice.value) {
-    case 'whisper': return 0.25
-    case 'normal': return 0.5
-    case 'shout': return 1
-    case 'megaphone': return 1
-    default: return 0.5
-  }
+  const mode = voiceMode.value.toLowerCase()
+  if (mode.includes('whisper')) return 0.25
+  if (mode.includes('normal')) return 0.5
+  if (mode.includes('shout')) return 1
+  if (mode.includes('megaphone')) return 1
+  return 0.5
 })
 
-const voiceGlow = computed(() => voice.value === 'megaphone')
+const voiceGlow = computed(() => voiceMode.value.toLowerCase().includes('megaphone'))
 </script>
 
 <template>
