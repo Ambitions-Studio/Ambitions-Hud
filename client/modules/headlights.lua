@@ -6,15 +6,13 @@ CreateThread(function()
 
         if IsPedInAnyVehicle(playerPed, false) then
             local vehicle = GetVehiclePedIsIn(playerPed, false)
-            local lightsOn, highbeamsOn = GetVehicleLightsState(vehicle)
+            local _, lightsOn, highbeamsOn = GetVehicleLightsState(vehicle)
 
             local currentState = 'off'
-            if IsVehicleEngineOn(vehicle) then
-                if highbeamsOn then
-                    currentState = 'highbeam'
-                elseif IsVehicleLightOn(vehicle) or lightsOn then
-                    currentState = 'on'
-                end
+            if highbeamsOn then
+                currentState = 'highbeam'
+            elseif lightsOn then
+                currentState = 'on'
             end
 
             if currentState ~= lastHeadlightState then
