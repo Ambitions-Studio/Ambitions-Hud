@@ -134,6 +134,64 @@ hudConfig = {
   seatbeltKey = 'B',
 
   -- ===================================================================
+  -- INDICATOR KEYBINDINGS
+  -- ===================================================================
+
+  --- Keybind for left turn indicator
+  ---
+  --- This setting defines the keyboard key used to toggle the left
+  --- turn indicator (blinker) when inside a vehicle.
+  ---
+  --- BEHAVIOR:
+  --- • Press once: Activates left indicator
+  --- • Press again: Deactivates indicator
+  --- • Automatically resets when exiting vehicle
+  ---
+  --- KEYBIND FORMAT:
+  --- • Use GTA V key names
+  --- • Directional keys: 'LEFT', 'RIGHT', 'UP', 'DOWN'
+  ---
+  --- CONFIGURATION:
+  --- • Default: 'LEFT' (left arrow key)
+  indicatorLeftKey = 'LEFT',
+
+  --- Keybind for right turn indicator
+  ---
+  --- This setting defines the keyboard key used to toggle the right
+  --- turn indicator (blinker) when inside a vehicle.
+  ---
+  --- BEHAVIOR:
+  --- • Press once: Activates right indicator
+  --- • Press again: Deactivates indicator
+  --- • Automatically resets when exiting vehicle
+  ---
+  --- KEYBIND FORMAT:
+  --- • Use GTA V key names
+  --- • Directional keys: 'LEFT', 'RIGHT', 'UP', 'DOWN'
+  ---
+  --- CONFIGURATION:
+  --- • Default: 'RIGHT' (right arrow key)
+  indicatorRightKey = 'RIGHT',
+
+  --- Keybind for hazard lights (warning)
+  ---
+  --- This setting defines the keyboard key used to toggle the hazard
+  --- lights (both indicators flashing) when inside a vehicle.
+  ---
+  --- BEHAVIOR:
+  --- • Press once: Activates both indicators (hazard mode)
+  --- • Press again: Deactivates hazard lights
+  --- • Automatically resets when exiting vehicle
+  ---
+  --- KEYBIND FORMAT:
+  --- • Use GTA V key names
+  --- • Directional keys: 'LEFT', 'RIGHT', 'UP', 'DOWN'
+  ---
+  --- CONFIGURATION:
+  --- • Default: 'UP' (up arrow key)
+  indicatorHazardKey = 'UP',
+
+  -- ===================================================================
   -- SOUND SETTINGS
   -- ===================================================================
 

@@ -51,6 +51,12 @@ const handleMessage = (event: MessageEvent) => {
   if (event.data.action === 'updateSeatbeltSoundVolume') {
     seatbeltAudio.volume = event.data.value
   }
+  if (event.data.action === 'updateIndicator') {
+    indicator.value = event.data.value
+  }
+  if (event.data.action === 'updateHeadlights') {
+    headlights.value = event.data.value
+  }
 }
 
 window.addEventListener('message', handleMessage)
