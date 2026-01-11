@@ -1,4 +1,4 @@
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref } from 'vue'
 
 const health = ref(100)
 const armor = ref(0)
@@ -42,21 +42,9 @@ const handleMessage = (event: MessageEvent) => {
   }
 }
 
-let isListenerRegistered = false
+window.addEventListener('message', handleMessage)
 
 export function usePlayerStats() {
-  onMounted(() => {
-    if (!isListenerRegistered) {
-      window.addEventListener('message', handleMessage)
-      isListenerRegistered = true
-    }
-  })
-
-  onUnmounted(() => {
-    window.removeEventListener('message', handleMessage)
-    isListenerRegistered = false
-  })
-
   return {
     health,
     armor,
