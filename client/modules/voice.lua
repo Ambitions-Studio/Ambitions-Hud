@@ -52,7 +52,7 @@ CreateThread(function()
     InitializeVoice()
 
     while true do
-        local isTalking = MumbleIsPlayerTalking(PlayerId()) == 1
+        local isTalking = NetworkIsPlayerTalking(PlayerId())
 
         if isTalking ~= lastTalkingState then
             lastTalkingState = isTalking
